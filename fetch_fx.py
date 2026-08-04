@@ -21,4 +21,4 @@ def exchange_rate(base,target,url):
     conversion_rate = fx_json_data["conversion_rates"][target]
     return conversion_rate
 
-print(exchange_rate("USD","PKR",api_url))
+# print(exchange_rate("USD","PKR",api_url))
