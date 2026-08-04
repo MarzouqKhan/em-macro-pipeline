@@ -2,7 +2,7 @@ import os
 import dotenv
 import requests
 
-# Intialize FX API
+# Initialize FX API and .env file
 dotenv.load_dotenv()
 fx_api_key = os.getenv("FX_API_KEY")
 base_url = "https://v6.exchangerate-api.com/v6"
