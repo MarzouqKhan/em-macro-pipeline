@@ -17,6 +17,11 @@ def series_data(series, api_key):
 # Function that GETs current SBP policy rate
 def policy_rate(api_key):
     return series_data("TS_GP_IR_SIRPR_AH.SBPOL0030", api_key)
-                       
+
+# Function that GETs net SBP reserves (in millions of $USD)
+def net_sbp_reserves(api_key):
+    return series_data("TS_GP_EXT_PAKRES_M.Z00030",api_key)
+
 # print(series_data("TS_GP_IR_SIRPR_AH.SBPOL0030",sbp_api_key))
 # print(policy_rate(sbp_api_key))
+# print(net_sbp_reserves(sbp_api_key))
