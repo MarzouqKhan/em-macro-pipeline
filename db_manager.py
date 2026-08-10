@@ -1,4 +1,5 @@
 import sqlite3
+from datetime import date
 
 # Initialize
 db_filename = 'macro_data.db'
@@ -24,9 +25,9 @@ def fetch_row(id):
     return row
 
 # Add a row to the table
-def add_row(data_name,stat_value,stat_date,fetch_date,source=None,series_key=None):
+def add_row(data_name,stat_value,stat_date,source=None,series_key=None):
     cursor.execute("""INSERT INTO macro_data 
     (data_name,stat_value,source,series_key,stat_date,fetch_date) 
-    VALUES (?,?,?,?,?,?)""",(data_name,stat_value,source,series_key,stat_date,fetch_date))
+    VALUES (?,?,?,?,?,?)""",(data_name,stat_value,source,series_key,stat_date,str(date.today())))
     connection.commit()
     return None
