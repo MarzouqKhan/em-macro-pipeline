@@ -1,7 +1,8 @@
 import sqlite3
 
 # Initialize
-connection = sqlite3.connect('macro_data.db')
+db_filename = 'macro_data.db'
+connection = sqlite3.connect(db_filename)
 cursor = connection.cursor()
 
 # Create macrodata table
