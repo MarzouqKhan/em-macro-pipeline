@@ -25,6 +25,7 @@ def policy_rate(api_key, save=False):
 def net_sbp_reserves(api_key, save=False):
     return series_data("TS_GP_EXT_PAKRES_M.Z00030",api_key, save)
 
-print(series_data("TS_GP_IR_SIRPR_AH.SBPOL0030",sbp_api_key, True))
-print(policy_rate(sbp_api_key, True))
-print(net_sbp_reserves(sbp_api_key, True))
+if __name__ == "__main__":
+    print(series_data("TS_GP_IR_SIRPR_AH.SBPOL0030",sbp_api_key, True))
+    print(policy_rate(sbp_api_key, True))
+    print(net_sbp_reserves(sbp_api_key, True))

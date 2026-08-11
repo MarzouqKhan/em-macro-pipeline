@@ -5,7 +5,7 @@ import db_manager
 from email.utils import parsedate_to_datetime
 
 # Initialize FX API and .env file
-dotenv.load_dotenv()
+dotenv.load_dotenv() 
 fx_api_key = os.getenv("FX_API_KEY")
 base_url = "https://v6.exchangerate-api.com/v6"
 api_url = f"{base_url}/{fx_api_key}/latest"
@@ -27,4 +27,5 @@ def exchange_rate(base,target,url,save=False):
         db_manager.add_row(f"{base}-{target} Exchange Rate",conversion_rate,time.strftime("%Y-%m-%d"),source="ExchangeRate-API")
     return conversion_rate
 
-print(exchange_rate("USD","PKR",api_url,True))
+if __name__ == "__main__":
+    print(exchange_rate("USD","PKR",api_url,True))
