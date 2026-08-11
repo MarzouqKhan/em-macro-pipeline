@@ -14,7 +14,8 @@ def series_data(series, api_key, save=False):
     sbp_json_data = r.json()
     series_data = sbp_json_data["rows"][0][4]
     if save:
-        db_manager.add_row(sbp_json_data["rows"][0][2],series_data,sbp_json_data["rows"][0][3],"SBP",sbp_json_data["rows"][0][1])
+        data_name, stat_date, source, series_key = sbp_json_data["rows"][0][2], sbp_json_data["rows"][0][3], "SBP", sbp_json_data["rows"][0][1]
+        db_manager.add_row(data_name,series_data,stat_date,source,series_key)
     return series_data
 
 # Function that GETs current SBP policy rate
