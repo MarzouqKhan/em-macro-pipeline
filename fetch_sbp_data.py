@@ -12,10 +12,10 @@ def series_data(series, api_key, save=False):
     full_url = f"https://easydata.sbp.org.pk/api/v1/series/{series}/data?api_key={api_key}"
     r = requests.get(full_url,timeout=10)
     sbp_json_data = r.json()
-    series_data = sbp_json_data["rows"][0][4]
+    data = sbp_json_data["rows"][0][4]
     if save:
         data_name, stat_date, source, series_key = sbp_json_data["rows"][0][2], sbp_json_data["rows"][0][3], "SBP", sbp_json_data["rows"][0][1]
-        db_manager.add_row(data_name,series_data,stat_date,source,series_key)
+        db_manager.add_row(data_name,data,stat_date,source,series_key)
     return series_data
 
 # Function that GETs current SBP policy rate
