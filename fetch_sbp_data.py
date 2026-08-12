@@ -29,6 +29,7 @@ class SBPClient:
             print(f"Encountered {e}, please ensure you are connected to the Internet.")
         sbp_json_data = r.json()
         data = sbp_json_data["rows"][0][4]
+        
         if should_save:
             data_name, stat_date, source, series_key = sbp_json_data["rows"][0][2], sbp_json_data["rows"][0][3], "SBP", sbp_json_data["rows"][0][1]
             print("Saving data...")
