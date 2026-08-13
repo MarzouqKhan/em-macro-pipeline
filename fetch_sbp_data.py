@@ -22,11 +22,11 @@ class SBPClient:
         try:
             r = requests.get(full_url,timeout=10)
             r.raise_for_status()
-        except requests.RequestException as e:
-            print(f"Request failed: {e}")
-            return None
         except requests.ConnectionError as e:
             print(f"Encountered {e}, please ensure you are connected to the Internet.")
+            return None
+        except requests.RequestException as e:
+            print(f"Request failed: {e}")
             return None
         sbp_json_data = r.json()
         data = sbp_json_data["rows"][0][4]
