@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 psx_url = 'https://dps.psx.com.pk/indices'
 
 # Function that scrapes PSX website and returns High, Low, Current, Change, and % Change of the requested symbol as a dict
-def psx_fetch(symbol):
+def psx_index_fetch(symbol):
     try:
         r = requests.get(psx_url,timeout=10)
         r.raise_for_status()
@@ -30,5 +30,5 @@ def psx_fetch(symbol):
     return symbol_data
 
 if __name__ == "__main__":
-    print(psx_fetch('KSE100'))
-    print(psx_fetch('KSE100')['high'])
+    print(psx_index_fetch('KSE100'))
+    print(psx_index_fetch('KSE100')['high'])
