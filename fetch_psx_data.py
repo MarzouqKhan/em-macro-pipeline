@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-base_url = 'https://dps.psx.com.pk'
+base_url = 'https://dps.psx.com.pk' # Note: Don't scrape the PSX website for commercial purposes without permission, per their data policy.
 
 # Function that scrapes PSX website and returns High, Low, Current, Change, and % Change of the requested symbol as a dict
 def psx_index_fetch(symbol):
