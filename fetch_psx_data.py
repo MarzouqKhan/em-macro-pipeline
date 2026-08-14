@@ -1,11 +1,12 @@
 import requests
 from bs4 import BeautifulSoup
-psx_url = 'https://dps.psx.com.pk/indices'
+base_url = 'https://dps.psx.com.pk'
 
 # Function that scrapes PSX website and returns High, Low, Current, Change, and % Change of the requested symbol as a dict
 def psx_index_fetch(symbol):
+    index_url = f'{base_url}/indices'
     try:
-        r = requests.get(psx_url,timeout=10)
+        r = requests.get(index_url,timeout=10)
         r.raise_for_status()
     except requests.ConnectionError as e:
         print(f"Encountered {e}, please ensure you are connected to the Internet.")
