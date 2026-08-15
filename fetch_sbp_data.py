@@ -31,7 +31,7 @@ class SBPClient:
         sbp_json_data = r.json()
         data = sbp_json_data["rows"][0][4]
 
-        if should_save:
+        if should_save: # Saves data to database if save is True
             data_name, stat_date, source, series_key = sbp_json_data["rows"][0][2], sbp_json_data["rows"][0][3], "SBP", sbp_json_data["rows"][0][1]
             print("Saving data...")
             db_manager.add_row(data_name,data,stat_date,source,series_key)
