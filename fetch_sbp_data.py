@@ -19,8 +19,11 @@ class SBPClient:
     def series_data(self, series, save=None):
         should_save = self.save if save is None else save # Manage save logic based off passed value for save (if any)
         full_url = f"https://easydata.sbp.org.pk/api/v1/series/{series}/data?api_key={self.api_key}"
+        headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+        } # Avoids user-agent blocking issues by the SBP API
         try:
-            r = requests.get(full_url,timeout=10)
+            r = requests.get(full_url, headers=headers, timeout=10)
             r.raise_for_status()
         except requests.ConnectionError as e:
             print(f"Encountered {e}, please ensure you are connected to the Internet.")
