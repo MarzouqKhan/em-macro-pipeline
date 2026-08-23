@@ -5,8 +5,11 @@ base_url = 'https://dps.psx.com.pk' # Note: Don't scrape the PSX website for com
 # Function that scrapes PSX website and returns High, Low, Current, Change, and % Change of the requested symbol as a dict
 def psx_index_fetch(symbol):
     index_url = f'{base_url}/indices'
+    headers = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+    }
     try:
-        r = requests.get(index_url,timeout=10)
+        r = requests.get(index_url, headers=headers, timeout=10)
         r.raise_for_status()
     except requests.ConnectionError as e:
         print(f"Encountered {e}, please ensure you are connected to the Internet.")
