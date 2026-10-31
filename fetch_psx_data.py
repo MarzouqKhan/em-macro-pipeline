@@ -1,9 +1,12 @@
 import requests
 from bs4 import BeautifulSoup
+import db_manager
+from datetime import datetime, timezone
+
 base_url = 'https://dps.psx.com.pk' # Note: Don't scrape the PSX website for commercial purposes without permission, per their data policy.
 
 # Function that scrapes PSX website and returns High, Low, Current, Change, and % Change of the requested symbol as a dict
-def psx_index_fetch(symbol):
+def psx_index_fetch(symbol,save=False):
     index_url = f'{base_url}/indices'
     headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
@@ -31,6 +34,11 @@ def psx_index_fetch(symbol):
             'percent_change': float(cells[5]['data-order'])
             }
             break
+    if save and symbol_data:
+        time = datetime.now(timezone.utc).strftime('%Y-%m-%d')
+        db_manager.add_row(f"{symbol} Points",symbol_data['current'],time,source="Pakistan Stock Exchange")
+        db_manager.add_row(f"{symbol} Percent Change",symbol_data['percent_change'],time,source="Pakistan Stock Exchange")
+        db_manager.add_row(f"{symbol} Points Change",symbol_data['change'],time,source="Pakistan Stock Exchange")
     return symbol_data
 
 if __name__ == "__main__":
